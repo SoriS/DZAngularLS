@@ -49,7 +49,6 @@ submitExample.controller('ExampleController', ['$scope', 'getLocalStorage', func
             }
         }
     });
-
     
 }]);
 

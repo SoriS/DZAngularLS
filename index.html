@@ -84,21 +84,37 @@
                 <md-tab label="two">
                     <md-content class="md-padding">
                         <p>Test</p>
-                        <div ng-controller="BasicDemoCtrl as ctrl" layout="column" ng-cloak>
+                        <div ng-controller="BasicDemoCtrl as ctrl" ng-cloak>
                             <form name="fruitForm">
-                                <md-chips ng-model="ctrl.tags" name="fruitName" readonly="ctrl.readonly" md-removable="ctrl.removable" md-max-chips="8"
+                                <md-chips ng-model="ctrl.tags" md-on-remove="ctrl.remove($chip)"md-on-remove="ctrl.remove($chip)" md-transform-chip="ctrl.newVeg($chip,tags)" name="fruitName" readonly="ctrl.readonly" 
                                     placeholder="Enter a fruit...">
+
                                     <md-chip-template>
                                         <strong>{{$chip}}</strong>
-                                        <em>(fruit)</em>
+                                        <em>(tags)</em>
                                     </md-chip-template>
                                 </md-chips>
+                                <md-list>
+                                    <md-list-item class="md-3-line" ng-repeat="item in tags2">
+                                        <div class="md-list-item-text">
+                                            <md-chip-template>
+                                                <strong>{{item.$chip}}</strong>
+                                                <em>(tags)</em>
+                                            </md-chip-template>
+                                        </div>
+
+                                    </md-list-item>
+                                </md-list>
+
+
+
+
 
                             </form>
                         </div>
-
+                    </md-content>
                 </md-tab>
-                </md-content>
+
 
 
                 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>

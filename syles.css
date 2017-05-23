@@ -73,4 +73,9 @@ form{
 
 .chipsdemoBasicUsage .custom-chips md-chips-wrap.md-removable md-chip md-chip-template {
   padding-right: 5px; }
+.toolbardemoScrollShrink .face {
+  width: 48px;
+  margin: 16px;
+  border-radius: 48px;
+  border: 1px solid #ddd; }
     
