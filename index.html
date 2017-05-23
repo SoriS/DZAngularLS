@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="syles.css">
 </head>
@@ -17,66 +18,102 @@
 
     <div ng-controller="ExampleController" class="panel">
 
-        <div class="form-inline">
-            <form ng-submit="submit()">
+        <form name="contactForm" data-ng-submit="submit()">
 
-                <div class="form-group">
-                    <input class="form-control" type="text" ng-model="text" name="text" placeholder="Название" />
-                </div>
-                    
-                    <input type="submit" id="submit" value="Submit"/>
-                    
+            <md-input-container md-no-float>
+                <input type="text" data-ng-model="text" placeholder="Название">
+            </md-input-container>
 
-                <div>
-                    <label>
+            <div>
+                <md-button type="submit">Send</md-button>
+            </div>
+
+            <div class="checkbox1">
+                <label>
                         <input class="form-control" type="checkbox" ng-model="all" />All todo
                     </label>
-                    <label>
+                <label>
                         <input class="form-control" type="checkbox" ng-disabled="all" ng-value="false" ng-model="options.done" />Done todo
                     </label>
-                </div>
-                
-            </form>
-        </div>
+            </div>
 
-        <table class="table">
+        </form>
 
-            <thead>
+        <md-content class="md-padding">
 
-                <tr>
-                    <th>Задание</th>
-                    <th>ДатаНачала</th>
-                    <th>ДатаВыполнения</th>
-                    <th>Выполненно</th>
-                </tr>
-            </thead>
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="one">
+                    <md-content class="md-padding">
 
-            <tbody>
+                        <table class="table">
 
-                <tr  ng-repeat="item in items | filter: text | filter:(!all || '') && options | orderBy:'purchase'">
+                            <thead>
 
-                    <td><input class="form-control" type="text" ng-model-options="{ updateOn: 'blur' }" ng-model="item.purchase"  ng-readonly="item.status" ng-dblclick="Rename($event,item)"
-                            ng-change="onBlur($event,item)"></td>
-                    <td><p ng-bind="item.dateS | date:'MM/dd/yyyy HH:mm:ss'"></p></td>
-                    <td><p ng-bind="item.dateE | date:'MM/dd/yyyy HH:mm:ss'"></p></td>
-                    <td><input type="checkbox" ng-model="item.done" ng-change="change(item)"></td>
-                    <td>
-                        <jk-rating-stars max-rating="6"  rating="item.rating" on-rating="onRating(rating,item)">
-                        </jk-rating-stars>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                                <tr>
+                                    <th>Задание</th>
+                                    <th>ДатаНачала</th>
+                                    <th>ДатаВыполнения</th>
+                                    <th>Выполненно</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr ng-repeat="item in items | filter: text | filter:(!all || '') && options | orderBy:'purchase'">
+
+                                    <td><input class="form-control" type="text" ng-model-options="{ updateOn: 'blur' }" ng-model="item.purchase"
+                                            ng-readonly="item.status" ng-dblclick="Rename($event,item)" ng-change="onBlur($event,item)"></td>
+                                    <td>
+                                        <p ng-bind="item.dateS | date:'MM/dd/yyyy HH:mm:ss'"></p>
+                                    </td>
+                                    <td>
+                                        <p ng-bind="item.dateE | date:'MM/dd/yyyy HH:mm:ss'"></p>
+                                    </td>
+                                    <td><input type="checkbox" ng-model="item.done" ng-change="change(item)"></td>
+                                    <td>
+                                        <jk-rating-stars max-rating="6" rating="item.rating" on-rating="onRating(rating,item)">
+                                        </jk-rating-stars>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </md-content>
+                </md-tab>
+
+                <md-tab label="two">
+                    <md-content class="md-padding">
+                        <p>Test</p>
+                        <div ng-controller="BasicDemoCtrl as ctrl" layout="column" ng-cloak>
+                            <form name="fruitForm">
+                                <md-chips ng-model="ctrl.tags" name="fruitName" readonly="ctrl.readonly" md-removable="ctrl.removable" md-max-chips="8"
+                                    placeholder="Enter a fruit...">
+                                    <md-chip-template>
+                                        <strong>{{$chip}}</strong>
+                                        <em>(fruit)</em>
+                                    </md-chip-template>
+                                </md-chips>
+
+                            </form>
+                        </div>
+
+                </md-tab>
+                </md-content>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="node_modules\angular-jk-rating-stars\dist\jk-rating-stars.min.js"></script>
-    <link href="node_modules\angular-jk-rating-stars\dist\jk-rating-stars.min.css" rel="stylesheet" type="text/css" /></link>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src=app.js></script>
-    <script src=controler.js></script>
-     <script src=factory.js></script>
+                <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+                <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+                <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+                <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+                <!-- Angular Material Library -->
+                <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+                <script src="node_modules\angular-jk-rating-stars\dist\jk-rating-stars.min.js"></script>
+                <link href="node_modules\angular-jk-rating-stars\dist\jk-rating-stars.min.css" rel="stylesheet" type="text/css" /></link>
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                <script src=app.js></script>
+                <script src=controler.js></script>
+                <script src=controlerTags.js></script>
+                <script src=factory.js></script>
 
 </body>
 
