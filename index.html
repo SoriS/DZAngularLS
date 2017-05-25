@@ -16,120 +16,125 @@
     </div>
 
 
-    <div ng-controller="ExampleController" class="panel">
+    <div id="form-control" ng-controller="ExampleController" class="panel">
 
-        <form name="contactForm" data-ng-submit="submit()">
+        <form id="form-control" name="contactForm" data-ng-submit="submit()">
+            <div class="row">
+                <md-input-container class="col-sm-2" md-no-float>
+                    <input type="text" data-ng-model="text" placeholder="Название">
+                </md-input-container>
 
-            <md-input-container md-no-float>
-                <input type="text" data-ng-model="text" placeholder="Название">
-            </md-input-container>
 
-            <div>
-                <md-button type="submit">Send</md-button>
+                <md-button class="col-sm-1" type="submit">Send</md-button>
+
             </div>
-
             <div class="checkbox1">
                 <label>
-                        <input class="form-control" type="checkbox" ng-model="all" />All todo
+                        <input  type="checkbox" ng-model="all" />All todo
                     </label>
                 <label>
-                        <input class="form-control" type="checkbox" ng-disabled="all" ng-value="false" ng-model="options.done" />Done todo
+                        <input  type="checkbox" ng-disabled="all" ng-value="false" ng-model="options.done" />Done todo
                     </label>
             </div>
 
         </form>
+    
+    <md-content class="md-padding">
 
-        <md-content class="md-padding">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="one">
 
-            <md-tabs md-dynamic-height md-border-bottom>
-                <md-tab label="one">
-                    <md-content class="md-padding">
+                <md-content class="md-padding">
 
-                        <table class="table">
+                    <table class="table">
 
-                            <thead>
+                        <thead>
 
-                                <tr>
-                                    <th>Задание</th>
-                                    <th>ДатаНачала</th>
-                                    <th>ДатаВыполнения</th>
-                                    <th>Выполненно</th>
-                                </tr>
-                            </thead>
+                            <tr>
+                                <th>Задание</th>
+                                <th>ДатаНачала</th>
+                                <th>ДатаВыполнения</th>
+                                <th>Выполненно</th>
+                            </tr>
+                        </thead>
 
-                            <tbody>
+                        <tbody>
 
-                                <tr ng-repeat="item in items | filter: text | filter:(!all || '') && options | orderBy:'purchase'">
+                            <tr ng-repeat="item in items | filter: text | filter:(!all || '') && options | orderBy:'purchase'">
 
-                                    <td><input class="form-control" type="text" ng-model-options="{ updateOn: 'blur' }" ng-model="item.purchase"
-                                            ng-readonly="item.status" ng-dblclick="Rename($event,item)" ng-change="onBlur($event,item)"></td>
-                                    <td>
-                                        <p ng-bind="item.dateS | date:'MM/dd/yyyy HH:mm:ss'"></p>
-                                    </td>
-                                    <td>
-                                        <p ng-bind="item.dateE | date:'MM/dd/yyyy HH:mm:ss'"></p>
-                                    </td>
-                                    <td><input type="checkbox" ng-model="item.done" ng-change="change(item)"></td>
-                                    <td>
-                                        <jk-rating-stars max-rating="6" rating="item.rating" on-rating="onRating(rating,item)">
-                                        </jk-rating-stars>
-                                    </td>
-                                </tr>
+                                <td><input class="form-control" type="text" ng-model-options="{ updateOn: 'blur' }" ng-model="item.purchase"
+                                        ng-readonly="item.status" ng-dblclick="Rename($event,item)" ng-change="onBlur($event,item)"></td>
+                                <td>
+                                    <p ng-bind="item.dateS | date:'MM/dd/yyyy HH:mm:ss'"></p>
+                                </td>
+                                <td>
+                                    <p ng-bind="item.dateE | date:'MM/dd/yyyy HH:mm:ss'"></p>
+                                </td>
+                                <td><input type="checkbox" ng-model="item.done" ng-change="change(item)"></td>
+                                <td>
+                                    <jk-rating-stars max-rating="6" rating="item.rating" on-rating="onRating(rating,item)">
+                                    </jk-rating-stars>
+                                </td>
+                            </tr>
 
-                            </tbody>
-                        </table>
-                    </md-content>
-                </md-tab>
-
-                <md-tab label="two">
-                    <md-content class="md-padding">
-                        <p>Test</p>
-                        <div ng-controller="BasicDemoCtrl as ctrl" ng-cloak>
-                            <form name="fruitForm">
-                                <md-chips ng-model="ctrl.tags" md-on-remove="ctrl.remove($chip)"md-on-remove="ctrl.remove($chip)" md-transform-chip="ctrl.newVeg($chip,tags)" name="fruitName" readonly="ctrl.readonly" 
-                                    placeholder="Enter a fruit...">
-
-                                    <md-chip-template>
-                                        <strong>{{$chip}}</strong>
-                                        <em>(tags)</em>
-                                    </md-chip-template>
-                                </md-chips>
-                                <md-list>
-                                    <md-list-item class="md-3-line" ng-repeat="item in tags2">
-                                        <div class="md-list-item-text">
-                                            <md-chip-template>
-                                                <strong>{{item.$chip}}</strong>
-                                                <em>(tags)</em>
-                                            </md-chip-template>
-                                        </div>
-
-                                    </md-list-item>
-                                </md-list>
+                        </tbody>
+                    </table>
+                </md-content>
+            </md-tab>
 
 
 
 
 
-                            </form>
-                        </div>
-                    </md-content>
-                </md-tab>
+
+            <md-tab label="two">
+                <md-content class="md-padding">
+                    <p>Test</p>
+                    <div ng-controller="BasicDemoCtrl as ctrl" ng-cloak>
+                        <form>
+                            <md-chips ng-model="ctrl.tags2" md-on-remove="ctrl.remove($chip)" md-transform-chip="ctrl.newVeg($chip,tags2)" readonly="ctrl.readonly"
+                                placeholder="Enter a tags...">
+
+                                <md-chip-template>
+                                    <strong>{{$chip}}</strong>
+                                    <em>(tags)</em>
+                                </md-chip-template>
+                            </md-chips>
+
+                            <md-list>
+                                <md-list-item class="md-3-line" ng-repeat="item in ctrl.tags2">
+                                    <div class="md-list-item-text">
+                                        <md-chip-template>
+                                            <strong>{{item}}</strong>
+                                            <em>(tags)</em>
+                                        </md-chip-template>
+                                    </div>
+
+                                </md-list-item>
+                            </md-list>
+
+                        </form>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>
 
 
-
-                <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-                <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-                <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-                <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-                <!-- Angular Material Library -->
-                <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-                <script src="node_modules\angular-jk-rating-stars\dist\jk-rating-stars.min.js"></script>
-                <link href="node_modules\angular-jk-rating-stars\dist\jk-rating-stars.min.css" rel="stylesheet" type="text/css" /></link>
-                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-                <script src=app.js></script>
-                <script src=controler.js></script>
-                <script src=controlerTags.js></script>
-                <script src=factory.js></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="node_modules\angular-jk-rating-stars\dist\jk-rating-stars.min.js"></script>
+    <link href="node_modules\angular-jk-rating-stars\dist\jk-rating-stars.min.css" rel="stylesheet" type="text/css" /></link>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src=app.js></script>
+    <script src=controler.js></script>
+    <script src=controlerTags.js></script>
+    <script src=factory.js></script>
 
 </body>
 
