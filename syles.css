@@ -123,6 +123,10 @@ form {
     background: blue;
 }
 
+.orange {
+    background: orange;
+}
+
 md-chips md-chip {
     color: white;
 }

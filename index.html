@@ -75,6 +75,8 @@
                                         <jk-rating-stars max-rating="6" rating="item.rating" on-rating="onRating(rating,item)">
                                         </jk-rating-stars>
                                     </td>
+                                    
+
                                 </tr>
 
                             </tbody>
@@ -85,10 +87,11 @@
 
                 <md-tab label="two">
                     <md-content class="md-padding">
-                        <p>Test</p>
+                        
                         <div ng-controller="BasicDemoCtrl as ctrl" ng-cloak>
+                            <p>Test</p>
                             <form>
-                                <md-chips ng-model="ctrl.tags" md-on-remove="ctrl.remove($chip)" md-transform-chip="ctrl.newVeg($chip,tags)" readonly="ctrl.readonly"
+                                <md-chips ng-model="ctrl.tags" md-on-remove="ctrl.remove($chip)" md-transform-chip="ctrl.newVeg($chip)" readonly="ctrl.readonly"
                                     placeholder="Enter a tags...">
 
                                     <md-chip-template custom-chip>

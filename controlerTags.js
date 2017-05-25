@@ -4,26 +4,28 @@ submitExample.controller('BasicDemoCtrl', function ($scope, $timeout, $q) {
     self.readonly = false;
 
     // Lists of fruit names and Vegetable objects
-    self.FruitNames = angular.copy(self.tags);
 
     self.tags = [
         {
             name: 'zxczxczx1',
-            style: "red"
+            style: "red",
         },
         {
             name: 'zzxczxc2',
             style: "blue"
         }]
 
+     self.tags2 = [];
     self.newVeg = function ($chip) {
-        var tagsName = self.tags.map(e=>e.name)
-        if (self.tags.indexOf(tagsName) != -1)
-        {
+
+        var tagsName = self.tags.map(e => e.name)
+        if (self.tags.indexOf($chip) !== -1) {
             return
         }
-        console.log($chip)
-        self.tags.push($chip);
+        return {
+            name: $chip,
+            style: "orange"
+        }
     }
 
 
