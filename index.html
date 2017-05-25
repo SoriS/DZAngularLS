@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="syles.css">
 </head>
 
-<body ng-controller="ExampleController">
+<body>
 
     <div class="page-header">
 
@@ -92,7 +92,7 @@
                     <p>Test</p>
                     <div ng-controller="BasicDemoCtrl as ctrl" ng-cloak>
                         <form>
-                            <md-chips ng-model="ctrl.tags2" md-on-remove="ctrl.remove($chip)" md-transform-chip="ctrl.newVeg($chip,tags2)" readonly="ctrl.readonly"
+                            <md-chips ng-model="ctrl.tags" md-on-remove="ctrl.remove($chip)" md-transform-chip="ctrl.newVeg($chip,tags)" readonly="ctrl.readonly"
                                 placeholder="Enter a tags...">
 
                                 <md-chip-template>
@@ -102,7 +102,7 @@
                             </md-chips>
 
                             <md-list>
-                                <md-list-item class="md-3-line" ng-repeat="item in ctrl.tags2">
+                                <md-list-item class="md-3-line" ng-repeat="item in ctrl.tags">
                                     <div class="md-list-item-text">
                                         <md-chip-template>
                                             <strong>{{item}}</strong>
