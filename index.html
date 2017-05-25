@@ -38,88 +38,84 @@
             </div>
 
         </form>
-    
-    <md-content class="md-padding">
 
-        <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="one">
+        <md-content class="md-padding">
 
-                <md-content class="md-padding">
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="one">
 
-                    <table class="table">
+                    <md-content class="md-padding">
 
-                        <thead>
+                        <table class="table">
 
-                            <tr>
-                                <th>Задание</th>
-                                <th>ДатаНачала</th>
-                                <th>ДатаВыполнения</th>
-                                <th>Выполненно</th>
-                            </tr>
-                        </thead>
+                            <thead>
 
-                        <tbody>
+                                <tr>
+                                    <th>Задание</th>
+                                    <th>ДатаНачала</th>
+                                    <th>ДатаВыполнения</th>
+                                    <th>Выполненно</th>
+                                </tr>
+                            </thead>
 
-                            <tr ng-repeat="item in items | filter: text | filter:(!all || '') && options | orderBy:'purchase'">
+                            <tbody>
 
-                                <td><input class="form-control" type="text" ng-model-options="{ updateOn: 'blur' }" ng-model="item.purchase"
-                                        ng-readonly="item.status" ng-dblclick="Rename($event,item)" ng-change="onBlur($event,item)"></td>
-                                <td>
-                                    <p ng-bind="item.dateS | date:'MM/dd/yyyy HH:mm:ss'"></p>
-                                </td>
-                                <td>
-                                    <p ng-bind="item.dateE | date:'MM/dd/yyyy HH:mm:ss'"></p>
-                                </td>
-                                <td><input type="checkbox" ng-model="item.done" ng-change="change(item)"></td>
-                                <td>
-                                    <jk-rating-stars max-rating="6" rating="item.rating" on-rating="onRating(rating,item)">
-                                    </jk-rating-stars>
-                                </td>
-                            </tr>
+                                <tr ng-repeat="item in items | filter: text | filter:(!all || '') && options | orderBy:'purchase'">
 
-                        </tbody>
-                    </table>
-                </md-content>
-            </md-tab>
+                                    <td><input class="form-control" type="text" ng-model-options="{ updateOn: 'blur' }" ng-model="item.purchase"
+                                            ng-readonly="item.status" ng-dblclick="Rename($event,item)" ng-change="onBlur($event,item)"></td>
+                                    <td>
+                                        <p ng-bind="item.dateS | date:'MM/dd/yyyy HH:mm:ss'"></p>
+                                    </td>
+                                    <td>
+                                        <p ng-bind="item.dateE | date:'MM/dd/yyyy HH:mm:ss'"></p>
+                                    </td>
+                                    <td><input type="checkbox" ng-model="item.done" ng-change="change(item)"></td>
+                                    <td>
+                                        <jk-rating-stars max-rating="6" rating="item.rating" on-rating="onRating(rating,item)">
+                                        </jk-rating-stars>
+                                    </td>
+                                </tr>
 
-
+                            </tbody>
+                        </table>
+                    </md-content>
+                </md-tab>
 
 
+                <md-tab label="two">
+                    <md-content class="md-padding">
+                        <p>Test</p>
+                        <div ng-controller="BasicDemoCtrl as ctrl" ng-cloak>
+                            <form>
+                                <md-chips ng-model="ctrl.tags" md-on-remove="ctrl.remove($chip)" md-transform-chip="ctrl.newVeg($chip,tags)" readonly="ctrl.readonly"
+                                    placeholder="Enter a tags...">
 
+                                    <md-chip-template custom-chip>
+                                        <strong>{{$chip.name}}</strong>
+                                        <em>(tags)</em>
+                                    </md-chip-template>
+                                </md-chips>
 
-            <md-tab label="two">
-                <md-content class="md-padding">
-                    <p>Test</p>
-                    <div ng-controller="BasicDemoCtrl as ctrl" ng-cloak>
-                        <form>
-                            <md-chips ng-model="ctrl.tags" md-on-remove="ctrl.remove($chip)" md-transform-chip="ctrl.newVeg($chip,tags)" readonly="ctrl.readonly"
-                                placeholder="Enter a tags...">
+                                <md-list>
+                                    <md-list-item class="md-3-line" ng-repeat="item in ctrl.tags">
+                                        <div class="md-list-item-text">
+                                            <md-chip-template>
+                                                <strong>{{item.name}}</strong>
+                                                <em>(tags)</em>
+                                            </md-chip-template>
+                                        </div>
 
-                                <md-chip-template>
-                                    <strong>{{$chip}}</strong>
-                                    <em>(tags)</em>
-                                </md-chip-template>
-                            </md-chips>
+                                    </md-list-item>
+                                </md-list>
 
-                            <md-list>
-                                <md-list-item class="md-3-line" ng-repeat="item in ctrl.tags">
-                                    <div class="md-list-item-text">
-                                        <md-chip-template>
-                                            <strong>{{item}}</strong>
-                                            <em>(tags)</em>
-                                        </md-chip-template>
-                                    </div>
-
-                                </md-list-item>
-                            </md-list>
-
-                        </form>
-                    </div>
-                </md-content>
-            </md-tab>
-        </md-tabs>
-    </md-content>
-</div>
+                            </form>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
